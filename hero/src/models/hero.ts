@@ -4,6 +4,7 @@ import { queryHeroList, getHeroDetails } from '@/services/api';
 
 export interface HeroModelState {
   heros: any;
+  filterKey: number;
 }
 
 export interface HeroModelType {
@@ -22,6 +23,7 @@ const HeroModel: HeroModelType = {
 
   state: {
     heros: [],
+    filterKey: 0,
   },
 
   effects: {

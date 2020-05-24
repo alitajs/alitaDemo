@@ -4,6 +4,7 @@ import { Effect } from 'alita';
 
 export interface ItemModelState {
   itemList: any;
+  filterKey: number;
 }
 
 export interface ItemModelType {
@@ -22,6 +23,7 @@ const ItemModel: ItemModelType = {
 
   state: {
     itemList: [],
+    filterKey: 0,
   },
 
   effects: {
