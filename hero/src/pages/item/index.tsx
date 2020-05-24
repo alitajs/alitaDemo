@@ -1,6 +1,6 @@
 import React, { FC, useEffect } from 'react';
 import { Row, Col, Card, Radio } from 'antd';
-import { ItemModelState, ConnectProps, connect } from 'alita';
+import { ItemModelState, ConnectProps, connect, router } from 'alita';
 import styles from './index.less';
 
 interface PageProps extends ConnectProps {
@@ -43,6 +43,10 @@ const ItemPage: FC<PageProps> = ({ item, dispatch }) => {
     });
   };
 
+  const gotoDetail = (val) => {
+    router.push(`/itemdetail/${val.item_id}`);
+  };
+
   return (
     <div className={styles.center}>
       <Card className={styles.radioPanel}>
@@ -59,7 +63,12 @@ const ItemPage: FC<PageProps> = ({ item, dispatch }) => {
           .filter((item: any) => filterKey === 0 || item.item_type === filterKey)
           .reverse()
           .map((item: any) => (
-            <Col key={item.ename} span={3} className={styles.heroitem}>
+            <Col
+              key={item.ename}
+              span={3}
+              className={styles.heroitem}
+              onClick={() => gotoDetail(item)}
+            >
               <img
                 src={`https://game.gtimg.cn/images/yxzj/img201606/itemimg/${item.item_id}.jpg`}
               />
