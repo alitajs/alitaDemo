@@ -34,7 +34,6 @@ const ItemPage: FC<PageProps> = ({ item, dispatch }) => {
   const { itemList = [], filterKey = 0 } = item;
 
   const onChange = (e) => {
-    console.log(e.target.value);
     dispatch!({
       type: 'item/save',
       payload: {
@@ -54,6 +53,7 @@ const ItemPage: FC<PageProps> = ({ item, dispatch }) => {
           ))}
         </RadioGroup>
       </Card>
+
       <Row>
         {itemList
           .filter((item: any) => filterKey === 0 || item.item_type === filterKey)

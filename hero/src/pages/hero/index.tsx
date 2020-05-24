@@ -1,7 +1,6 @@
 import React, { FC, useEffect } from 'react';
 import { Row, Col, Card, Radio } from 'antd';
 import { HeroModelState, ConnectProps, connect } from 'alita';
-import FreeHeroItem from '@/components/FreeHeroItem';
 import styles from './index.less';
 
 interface PageProps extends ConnectProps {
@@ -32,9 +31,10 @@ const HeroPage: FC<PageProps> = ({ hero, dispatch }) => {
     };
   }, []);
   // 注意，上面这里写空数组，表示初始化，如果需要监听某个字段变化再发起请求，可以在这里写明
-  const { heros, filterKey = 0, freeheros = [], itemHover = 0 } = hero;
+  const { heros, filterKey = 0 } = hero;
 
   const onChange = (e) => {
+    console.log(e.target.value);
     dispatch!({
       type: 'hero/save',
       payload: {
@@ -43,36 +43,8 @@ const HeroPage: FC<PageProps> = ({ hero, dispatch }) => {
     });
   };
 
-  const onItemHover = (e) => {
-    dispatch!({
-      type: 'hero/save',
-      payload: {
-        itemHover: e,
-      },
-    });
-  };
-
   return (
-    <div className={styles.normal}>
-      <div className={styles.info}>
-        <Row className={styles.freehero}>
-          <Col span={24}>
-            <p>周免英雄</p>
-            <div>
-              {freeheros.map((data: any, index: number) => (
-                <FreeHeroItem
-                  data={data}
-                  itemHover={itemHover}
-                  onItemHover={onItemHover}
-                  thisIndex={index}
-                  key={index}
-                />
-              ))}
-            </div>
-          </Col>
-        </Row>
-      </div>
-
+    <div className={styles.center}>
       <Card className={styles.radioPanel}>
         <RadioGroup onChange={onChange} value={filterKey}>
           {heroType.map((data) => (
@@ -82,6 +54,7 @@ const HeroPage: FC<PageProps> = ({ hero, dispatch }) => {
           ))}
         </RadioGroup>
       </Card>
+
       <Row>
         {heros
           .filter((item: any) => filterKey === 0 || item.hero_type === filterKey)
