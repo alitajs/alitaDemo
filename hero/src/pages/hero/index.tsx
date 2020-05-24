@@ -72,29 +72,6 @@ const HeroPage: FC<PageProps> = ({ hero, dispatch }) => {
           </Col>
         </Row>
       </div>
-
-      <Card className={styles.radioPanel}>
-        <RadioGroup onChange={onChange} value={filterKey}>
-          {heroType.map((data) => (
-            <Radio value={data.key} key={`hero-rodio-${data.key}`}>
-              {data.value}
-            </Radio>
-          ))}
-        </RadioGroup>
-      </Card>
-      <Row>
-        {heros
-          .filter((item: any) => filterKey === 0 || item.hero_type === filterKey)
-          .reverse()
-          .map((item: any) => (
-            <Col key={item.ename} span={3} className={styles.heroitem}>
-              <img
-                src={`https://game.gtimg.cn/images/yxzj/img201606/heroimg/${item.ename}/${item.ename}.jpg`}
-              />
-              <p>{item.cname}</p>
-            </Col>
-          ))}
-      </Row>
     </div>
   );
 };
