@@ -10,6 +10,10 @@ const middleware = async (ctx: Context, next: any) => {
 
 export const request = {
   prefix: '', // 统一的请求头
+  headers: {
+    Accept: 'application/json',
+    'Content-Type': 'application/json; charset=utf-8',
+  },
   middlewares: [middleware],
   errorHandler: (error: ResponseError) => {
     // 集中处理错误
