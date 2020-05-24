@@ -1,5 +1,6 @@
 import { Reducer } from 'redux';
 import { Effect, request } from 'alita';
+import { queryHeroList, getHeroDetails } from '@/services/api';
 
 export interface HeroModelState {
   heros: any;
@@ -24,35 +25,14 @@ const HeroModel: HeroModelType = {
   },
 
   effects: {
-    *fetch(_, { put }) {
-      const data = yield request('/api/herodetails.json', {
-        method: 'POST',
-        body: JSON.stringify({
-          ename: 110,
-        }),
-      });
-      const localData = [
-        {
-          ename: 105,
-          cname: '廉颇',
-          title: '正义爆轰',
-          new_type: 0,
-          hero_type: 3,
-          skin_name: '正义爆轰|地狱岩魂',
-        },
-        {
-          ename: 106,
-          cname: '小乔',
-          title: '恋之微风',
-          new_type: 0,
-          hero_type: 2,
-          skin_name: '恋之微风|万圣前夜|天鹅之梦|纯白花嫁|缤纷独角兽',
-        },
-      ];
+    *fetch(_, { call, put }) {
+      const herolist = yield call(queryHeroList);
+      const herodetails = yield call(getHeroDetails, { ename: 110 });
+      console.log(herodetails);
       yield put({
         type: 'save',
         payload: {
-          heros: data || localData,
+          heros: herolist,
         },
       });
     },
