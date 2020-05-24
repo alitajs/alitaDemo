@@ -25,7 +25,12 @@ const HeroModel: HeroModelType = {
 
   effects: {
     *fetch(_, { put }) {
-      const data = yield request('/api/herolist.json');
+      const data = yield request('/api/herodetails.json', {
+        method: 'POST',
+        body: JSON.stringify({
+          ename: 110,
+        }),
+      });
       const localData = [
         {
           ename: 105,
@@ -44,13 +49,6 @@ const HeroModel: HeroModelType = {
           skin_name: '恋之微风|万圣前夜|天鹅之梦|纯白花嫁|缤纷独角兽',
         },
       ];
-      const detail = yield request('/api/herodetails.json', {
-        method: 'POST',
-        body: JSON.stringify({
-          ename: 110,
-        }),
-      });
-      console.log(detail);
       yield put({
         type: 'save',
         payload: {
