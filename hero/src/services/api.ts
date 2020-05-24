@@ -26,3 +26,10 @@ export async function getHeroDetails(params: any): Promise<any> {
 export async function queryItemList(): Promise<any> {
   return request('/api/item.json');
 }
+
+export async function queryFreeHeros(params: any): Promise<any> {
+  return request('/api/freeheros.json', {
+    method: 'POST',
+    body: JSON.stringify(params),
+  });
+}
