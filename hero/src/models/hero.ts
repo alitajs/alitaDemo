@@ -25,7 +25,7 @@ const HeroModel: HeroModelType = {
 
   effects: {
     *fetch(_, { put }) {
-      const data = yield request('https://pvp.qq.com/web201605/js/herolist.json');
+      const data = yield request('/api/herolist.json');
       const localData = [
         {
           ename: 105,

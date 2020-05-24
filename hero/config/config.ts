@@ -1,18 +1,11 @@
 export default {
   appType: 'pc',
   locale: {},
-  // routes: [
-  //   {
-  //     path: '/',
-  //     component: '../layouts/BasicLayout',
-  //     routes: [
-  //       {
-  //         path: '/',
-  //         name: 'index',
-  //         icon: 'smile',
-  //         component: './index/index',
-  //       },
-  //     ],
-  //   },
-  // ],
+  proxy: {
+    '/api': {
+      target: 'https://pvp.qq.com/web201605/js/',
+      changeOrigin: true,
+      pathRewrite: { '^/api': '' },
+    },
+  },
 };
