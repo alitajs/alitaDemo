@@ -1,5 +1,5 @@
 import { Reducer } from 'redux';
-import { Effect } from 'alita';
+import { Effect, request } from 'alita';
 
 export interface HeroModelState {
   heros: any;
@@ -25,7 +25,8 @@ const HeroModel: HeroModelType = {
 
   effects: {
     *fetch(_, { put }) {
-      const data = [
+      const data = yield request('https://pvp.qq.com/web201605/js/herolist.json');
+      const localData = [
         {
           ename: 105,
           cname: '廉颇',
@@ -46,7 +47,7 @@ const HeroModel: HeroModelType = {
       yield put({
         type: 'save',
         payload: {
-          heros: data,
+          heros: data || localData,
         },
       });
     },
