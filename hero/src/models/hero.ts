@@ -1,5 +1,5 @@
 import { Reducer } from 'redux';
-import { Effect, request } from 'alita';
+import { Effect } from 'alita';
 import { queryHeroList, getHeroDetails } from '@/services/api';
 
 export interface HeroModelState {

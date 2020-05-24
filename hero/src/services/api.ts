@@ -22,3 +22,7 @@ export async function getHeroDetails(params: any): Promise<any> {
     body: JSON.stringify(params),
   });
 }
+
+export async function queryItemList(): Promise<any> {
+  return request('/api/item.json');
+}

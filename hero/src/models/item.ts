@@ -1,16 +1,16 @@
 import { Reducer } from 'redux';
-import { query } from '@/services/api';
-import { Effect } from '@/models/connect';
+import { queryItemList } from '@/services/api';
+import { Effect } from 'alita';
 
 export interface ItemModelState {
-  name: string;
+  itemList: any;
 }
 
 export interface ItemModelType {
   namespace: 'item';
   state: ItemModelState;
   effects: {
-    query: Effect;
+    fetch: Effect;
   };
   reducers: {
     save: Reducer<ItemModelState>;
@@ -21,16 +21,15 @@ const ItemModel: ItemModelType = {
   namespace: 'item',
 
   state: {
-    name: '',
+    itemList: '',
   },
 
   effects: {
-    *query({ payload }, { call, put }) {
-      const data = yield call(query, payload);
-      console.log(data)
+    *fetch(_, { call, put }) {
+      const data = yield call(queryItemList);
       yield put({
         type: 'save',
-        payload: { name: data.text },
+        payload: { itemList: data },
       });
     },
   },
