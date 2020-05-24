@@ -1,4 +1,5 @@
 import React, { FC, useEffect } from 'react';
+import { Row, Col } from 'antd';
 import { HeroModelState, ConnectProps, connect } from 'alita';
 import styles from './index.less';
 
@@ -21,7 +22,16 @@ const HeroPage: FC<PageProps> = ({ hero, dispatch }) => {
   const { heros } = hero;
   return (
     <div className={styles.center}>
-      <h2>This is {JSON.stringify(heros)}</h2>
+      <Row>
+        {heros.reverse().map((item: any) => (
+          <Col key={item.ename} span={3} className={styles.heroitem}>
+            <img
+              src={`https://game.gtimg.cn/images/yxzj/img201606/heroimg/${item.ename}/${item.ename}.jpg`}
+            />
+            <p>{item.cname}</p>
+          </Col>
+        ))}
+      </Row>
     </div>
   );
 };

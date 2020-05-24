@@ -21,7 +21,7 @@ const ItemModel: ItemModelType = {
   namespace: 'item',
 
   state: {
-    itemList: '',
+    itemList: [],
   },
 
   effects: {
